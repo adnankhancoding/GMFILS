@@ -28,12 +28,17 @@ const app = express();
 databaseConnection();
 
 // Configure CORS
+// app.use(cors({
+//   origin: 'https://gmfils.com', // Your frontend origin
+//   //  origin: 'http://localhost:3000', // Your frontend origin
+//   credentials: true, // Allow credentials
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }));
+
 app.use(cors({
-  origin: 'https://gmfils.com', // Your frontend origin
-  //  origin: 'http://localhost:3000', // Your frontend origin
-  credentials: true, // Allow credentials
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: 'https://gmfils.com',
+  credentials: true
 }));
 
 // Middleware
