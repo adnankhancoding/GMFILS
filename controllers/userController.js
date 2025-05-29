@@ -91,7 +91,8 @@ export const Login = async (req, res) => {
       .cookie("token", token, { 
         expires: new Date(Date.now() + 24 * 60 * 60 * 1000), 
         httpOnly: true,
-        sameSite: 'lax', // Changed from 'strict' to 'lax' for better compatibility
+        sameSite: 'None',
+        // sameSite: 'lax', // Changed from 'strict' to 'lax' for better compatibility
         secure: process.env.NODE_ENV === 'production'
       })
       .json({
