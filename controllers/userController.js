@@ -89,11 +89,15 @@ export const Login = async (req, res) => {
     
     return res.status(200)
       .cookie("token", token, { 
-        expires: new Date(Date.now() + 24 * 60 * 60 * 1000), 
-        httpOnly: true,
-        sameSite: 'None',
-        // sameSite: 'lax', // Changed from 'strict' to 'lax' for better compatibility
-        secure: process.env.NODE_ENV === 'production'
+         httpOnly: true,       // ✅ Protects against XSS
+  secure: true,         // ✅ Required for HTTPS (mobile browsers enforce this)
+  sameSite: 'None',     // ✅ Allows cross-site cookies (frontend ≠ backend)
+  maxAge: 24 * 60 * 60 * 1000  // ✅ 1 day expiration
+        // expires: new Date(Date.now() + 24 * 60 * 60 * 1000), 
+        // httpOnly: true,
+        // sameSite: 'None',
+        // // sameSite: 'lax', // Changed from 'strict' to 'lax' for better compatibility
+        // secure: process.env.NODE_ENV === 'production'
       })
       .json({
         message: `Welcome back ${user.name || 'User'}`,
